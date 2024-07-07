@@ -16,7 +16,11 @@ function Header() {
         </Box>
 
         <Box display="flex" justifyContent="flex-end">
-          <Button color="primary" variant="contained">
+          <Button
+            color="primary"
+            variant="contained"
+            href="https://www.linkedin.com/company/gobrax/"
+          >
             LinkedIn
           </Button>
         </Box>
