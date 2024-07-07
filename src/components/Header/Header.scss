@@ -1,0 +1,18 @@
+.app-bar {
+  box-shadow: none !important;
+}
+
+.app-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > div {
+    flex: 1;
+  }
+}
+
+.image-logo {
+  width: 270px;
+  height: 90px;
+}
