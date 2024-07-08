@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { sleep } from "../components/helpers/sleep";
 
 export const useCreateVehicleHook = () => {
+  console.log(`${import.meta.env.VITE_API_URL}vehicles`);
+
   const queryClient = useQueryClient();
   const {
     mutate,
@@ -12,7 +14,7 @@ export const useCreateVehicleHook = () => {
   } = useMutation({
     mutationKey: ["create-vehicle"],
     mutationFn: async (data: Omit<Vehicle, "id">) => {
-      await fetch(`${process.env.API_URL}vehicles`, {
+      await fetch(`${import.meta.env.VITE_API_URL}vehicles`, {
         method: "POST",
         body: JSON.stringify(data),
       });
