@@ -1,6 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useCreateDriverHook } from "../services/useCreateDriverHook";
 
 export const useDriverModalHook = () => {
+  const { isSuccess, driverLoading, createDriverMutation } = useCreateDriverHook();
   const [openModal, setOpenModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -11,14 +13,17 @@ export const useDriverModalHook = () => {
     setOpenModal(true);
   }, []);
 
-  const onConfirmModal = useCallback(() => {
-    setOpenModal(true);
-  }, []);
+  useEffect(() => {
+    if (isSuccess) {
+      setOpenModal(false);
+    }
+  }, [isSuccess]);
 
   return {
     openModal,
+    driverLoading,
     onCloseModal,
     onOpenModal,
-    onConfirmModal,
+    onConfirmModal: createDriverMutation,
   };
 };

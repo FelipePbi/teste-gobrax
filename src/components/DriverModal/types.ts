@@ -1,8 +1,9 @@
-import type { Vehicle } from "../../types/global";
+import type { Driver, Vehicle } from "../../types/global";
 
 export type DriverModalProps = {
   openModal: boolean;
-  onConfirmModal: () => void;
+  driverLoading: boolean;
+  onConfirmModal: (data: Omit<Driver, "id">) => void;
   onCloseModal: () => void;
   vehicleOptions?: Vehicle[];
 };

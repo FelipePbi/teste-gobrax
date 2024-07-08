@@ -14,12 +14,15 @@ import {
 } from "@mui/material";
 
 import * as T from "./types";
+import { LoadingButton } from "@mui/lab";
+import { formatMask } from "../helpers/formatString";
 
 function DriverModal({
   openModal,
+  driverLoading,
+  vehicleOptions,
   onCloseModal,
   onConfirmModal,
-  vehicleOptions,
 }: T.DriverModalProps) {
   const [name, setName] = useState("");
   const [document, setDocument] = useState("");
@@ -34,11 +37,22 @@ function DriverModal({
   };
 
   const handleDocumentChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDocument(event.target.value);
+    const valueStr = event.target.value;
+    const value = valueStr.match(/\d+/g)?.join("");
+
+    if (value && value.length <= 11) {
+      setDocument(formatMask("XXX.XXX.XXX-XX", value));
+    } else if (!value) {
+      setDocument("");
+    }
   };
 
   const handleConfirmModal = () => {
-    onConfirmModal();
+    onConfirmModal({
+      name,
+      document,
+      vehicleId: vehicle,
+    });
   };
 
   return (
@@ -51,22 +65,24 @@ function DriverModal({
         <Box className="input-content">
           <TextField
             id="name"
-            label="Nome"
+            label="Nome*"
             variant="outlined"
             fullWidth
             value={name}
             onChange={handleNameChange}
+            disabled={driverLoading}
           />
         </Box>
 
         <Box className="input-content">
           <TextField
             id="document"
-            label="Documento"
+            label="Documento*"
             variant="outlined"
             fullWidth
             value={document}
             onChange={handleDocumentChange}
+            disabled={driverLoading}
           />
         </Box>
 
@@ -80,7 +96,7 @@ function DriverModal({
             placeholder="Veículo"
             label="Veículo"
             onChange={handleVehicleChange}
-            disabled={!vehicleOptions?.length}
+            disabled={!vehicleOptions?.length || driverLoading}
           >
             {vehicleOptions?.map(({ id, brand, plate }) => (
               <MenuItem key={id} value={id}>
@@ -91,12 +107,17 @@ function DriverModal({
         </FormControl>
 
         <Box display="flex" justifyContent="flex-end" gap={2} marginTop={4}>
-          <Button color="warning" onClick={onCloseModal}>
+          <Button color="warning" onClick={onCloseModal} disabled={driverLoading}>
             Cancelar
           </Button>
-          <Button variant="contained" onClick={handleConfirmModal} disabled={!name || !document}>
+          <LoadingButton
+            variant="contained"
+            onClick={handleConfirmModal}
+            disabled={!name || !document}
+            loading={driverLoading}
+          >
             Confirmar
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </Modal>

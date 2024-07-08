@@ -1,12 +1,12 @@
 export type Driver = {
-  id: number;
+  id: string;
   name: string;
   document: string;
-  vehicleId: number;
+  vehicleId: string;
 };
 
 export type Vehicle = {
-  id: number;
+  id: string;
   brand: string;
   plate: string;
 };
