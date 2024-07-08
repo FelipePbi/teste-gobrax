@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./DriverModal.scss";
 import {
   Box,
@@ -46,6 +46,14 @@ function DriverModal({
       setDocument("");
     }
   };
+
+  useEffect(() => {
+    if (openModal) {
+      setDocument("");
+      setName("");
+      setVehicle("");
+    }
+  }, [openModal]);
 
   const handleConfirmModal = () => {
     onConfirmModal({
