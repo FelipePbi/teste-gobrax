@@ -1,6 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useCreateVehicleHook } from "../services/useCreateVehicleHook";
 
 export const useVehicleModalHook = () => {
+  const { createVehicleMutation, isSuccess, vehiclesLoading } = useCreateVehicleHook();
   const [openModal, setOpenModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -11,14 +13,17 @@ export const useVehicleModalHook = () => {
     setOpenModal(true);
   }, []);
 
-  const onConfirmModal = useCallback(() => {
-    setOpenModal(true);
-  }, []);
+  useEffect(() => {
+    if (isSuccess) {
+      setOpenModal(false);
+    }
+  }, [isSuccess]);
 
   return {
     openModal,
+    vehiclesLoading,
     onCloseModal,
     onOpenModal,
-    onConfirmModal,
+    onConfirmModal: createVehicleMutation,
   };
 };

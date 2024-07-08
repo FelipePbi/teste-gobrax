@@ -1,10 +1,18 @@
-import { ChangeEvent, useState } from "react";
-import "./VehicleModal.scss";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 
-import * as T from "./types";
+import "./VehicleModal.scss";
+import { formatMask } from "../helpers/formatString";
 
-function VehicleModal({ openModal, onCloseModal, onConfirmModal }: T.VehicleModalProps) {
+import * as T from "./types";
+import { LoadingButton } from "@mui/lab";
+
+function VehicleModal({
+  openModal,
+  vehiclesLoading,
+  onCloseModal,
+  onConfirmModal,
+}: T.VehicleModalProps) {
   const [brand, setBrand] = useState("");
   const [plate, setPlate] = useState("");
 
@@ -13,12 +21,31 @@ function VehicleModal({ openModal, onCloseModal, onConfirmModal }: T.VehicleModa
   };
 
   const handlePlateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPlate(event.target.value);
+    const value = event.target.value;
+
+    if (value && value.length <= 8) {
+      console.log();
+      setPlate(formatMask("XXX-XXXX", value).toLocaleUpperCase());
+    } else if (!value) {
+      setPlate("");
+    }
   };
 
+  const plateIsValid = /^[A-Z]{1,3}-[\d]{4}$/.test(plate);
+
   const handleConfirmModal = () => {
-    onConfirmModal();
+    onConfirmModal({
+      brand,
+      plate,
+    });
   };
+
+  useEffect(() => {
+    if (openModal) {
+      setBrand("");
+      setPlate("");
+    }
+  }, [openModal]);
 
   return (
     <Modal open={openModal} aria-labelledby="modal-vehicle-title">
@@ -30,32 +57,41 @@ function VehicleModal({ openModal, onCloseModal, onConfirmModal }: T.VehicleModa
         <Box className="input-content">
           <TextField
             id="brand"
-            label="Marca"
+            label="Marca*"
             variant="outlined"
             fullWidth
             value={brand}
             onChange={handleBrandChange}
+            disabled={vehiclesLoading}
           />
         </Box>
 
         <Box className="input-content">
           <TextField
             id="plate"
-            label="Placa"
+            label="Placa*"
             variant="outlined"
             fullWidth
             value={plate}
+            error={!plateIsValid && plate.length === 8}
+            helperText={!plateIsValid && plate.length === 8 ? "Formato errado! Ex.: AAA-9999" : ""}
             onChange={handlePlateChange}
+            disabled={vehiclesLoading}
           />
         </Box>
 
         <Box display="flex" justifyContent="flex-end" gap={2} marginTop={4}>
-          <Button color="warning" onClick={onCloseModal}>
+          <Button color="warning" onClick={onCloseModal} disabled={vehiclesLoading}>
             Cancelar
           </Button>
-          <Button variant="contained" onClick={handleConfirmModal} disabled={!brand || !plate}>
+          <LoadingButton
+            variant="contained"
+            onClick={handleConfirmModal}
+            disabled={!brand || !plate || !plateIsValid}
+            loading={vehiclesLoading}
+          >
             Confirmar
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </Modal>

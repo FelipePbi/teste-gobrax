@@ -1,3 +1,4 @@
+import { sleep } from "../components/helpers/sleep";
 import { Vehicle } from "../types/global";
 import { useQuery } from "@tanstack/react-query";
 
@@ -8,6 +9,7 @@ export const useGetVehicleHook = () => {
       const response = await fetch("http://localhost:3000/vehicles");
       const data: Vehicle[] = (await response.json()) as Vehicle[];
 
+      await sleep(800);
       return data;
     },
   });
