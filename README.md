@@ -14,21 +14,13 @@ A ideia do aplicativo é referente a um desafio proposto a mim, com o seguinte c
 
 - Listagem de motoristas
 
-- Remoção de motoristas
-
-- Atualização dos motoristas
-
 - Cadastro de veículo
 
 - Listagem de veículo
 
-- Remoção de veículo
-
-- Atualização do veículo
-
 - Selecionar um motorista
 
- [Link Figma](https://www.figma.com/design/yhXyRd4MqrFBY6LZjyb09x/frontend-challenge?node-id=0-1&t=p6zcFwBdEksdrilF-0).
+- [Link Figma](https://www.figma.com/design/yhXyRd4MqrFBY6LZjyb09x/frontend-challenge?node-id=0-1&t=p6zcFwBdEksdrilF-0)
 
 ## Começando
 
