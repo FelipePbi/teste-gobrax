@@ -1,29 +1,20 @@
+import { useSelectRow } from "../../hooks/useSelectRow";
 import "./Grid.scss";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
+import { columns } from "./constants";
 
 function Grid() {
-  const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", flex: 0.4, headerAlign: "center", align: "center" },
-    { field: "name", headerName: "Nome", flex: 1 },
-    { field: "document", headerName: "Documento", flex: 1 },
-    {
-      field: "hasVehicle",
-      headerName: "Vínculo",
-      flex: 1,
-      valueGetter: (value) => (value ? "Sim" : "Não"),
-    },
-  ];
+  const { handleSelectRow } = useSelectRow();
 
   const rows = [
-    { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-    { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-    { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-    { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-    { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-    { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-    { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-    { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-    { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+    { id: 1, name: "Snow", document: "Jon", vehicle: { brand: "Ford", plate: "ACX-1231" } },
+    { id: 2, name: "Lannister", document: "Cersei", vehicle: null },
+    { id: 3, name: "Lannister", document: "Jaime", vehicle: { brand: "Ford", plate: "ACX-1231" } },
+    { id: 4, name: "Stark", document: "Arya", vehicle: null },
+    { id: 5, name: "Targaryen", document: "Daenerys", vehicle: null },
+    { id: 7, name: "Clifford", document: "Ferrara", vehicle: { brand: "Ford", plate: "ACX-1231" } },
+    { id: 8, name: "Frances", document: "Rossini", vehicle: null },
+    { id: 9, name: "Roxie", document: "Harvey", vehicle: { brand: "Ford", plate: "ACX-1231" } },
   ];
 
   return (
@@ -38,6 +29,7 @@ function Grid() {
       disableColumnResize
       disableColumnFilter
       hideFooter
+      onRowSelectionModelChange={handleSelectRow}
     />
   );
 }
