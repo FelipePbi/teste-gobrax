@@ -2,13 +2,18 @@ import "./Header.scss";
 import { AppBar, Box, Button, Container } from "@mui/material";
 import logoSVG from "../../assets/gobrax 1.svg";
 
-function Header() {
+import * as T from "./types";
+
+function Header({ menuOptions }: T.HeaderProps) {
   return (
     <AppBar color="transparent" className="app-bar">
       <Container className="container">
         <Box>
-          <Button color="inherit">Motoristas</Button>
-          <Button color="inherit">Veículos</Button>
+          {menuOptions.map(({ label, onClick }) => (
+            <Button color="inherit" onClick={onClick}>
+              {label}
+            </Button>
+          ))}
         </Box>
 
         <Box display="flex" justifyContent="center">
