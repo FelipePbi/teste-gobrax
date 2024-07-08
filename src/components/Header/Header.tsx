@@ -10,7 +10,7 @@ function Header({ menuOptions }: T.HeaderProps) {
       <Container className="container">
         <Box>
           {menuOptions.map(({ label, onClick }) => (
-            <Button color="inherit" onClick={onClick}>
+            <Button key={label} color="inherit" onClick={onClick}>
               {label}
             </Button>
           ))}
