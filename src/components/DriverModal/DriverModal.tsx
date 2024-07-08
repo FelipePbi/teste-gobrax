@@ -15,7 +15,12 @@ import {
 
 import * as T from "./types";
 
-function DriverModal({ openModal, onCloseModal, onConfirmModal }: T.DriverModalProps) {
+function DriverModal({
+  openModal,
+  onCloseModal,
+  onConfirmModal,
+  vehicleOptions,
+}: T.DriverModalProps) {
   const [name, setName] = useState("");
   const [document, setDocument] = useState("");
   const [vehicle, setVehicle] = useState("");
@@ -75,10 +80,13 @@ function DriverModal({ openModal, onCloseModal, onConfirmModal }: T.DriverModalP
             placeholder="Veículo"
             label="Veículo"
             onChange={handleVehicleChange}
+            disabled={!vehicleOptions?.length}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {vehicleOptions?.map(({ id, brand, plate }) => (
+              <MenuItem key={id} value={id}>
+                {brand} - {plate}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 

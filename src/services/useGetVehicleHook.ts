@@ -1,8 +1,7 @@
-import { useCallback, useState } from "react";
 import { Vehicle } from "../types/global";
 import { useQuery } from "@tanstack/react-query";
 
-export const useVehicleHook = () => {
+export const useGetVehicleHook = () => {
   const { data: vehiclesData, isLoading: vehiclesLoading } = useQuery({
     queryKey: ["vehicles"],
     queryFn: async () => {
@@ -13,26 +12,8 @@ export const useVehicleHook = () => {
     },
   });
 
-  const [openModal, setOpenModal] = useState(false);
-
-  const onCloseModal = useCallback(() => {
-    setOpenModal(false);
-  }, []);
-
-  const onOpenModal = useCallback(() => {
-    setOpenModal(true);
-  }, []);
-
-  const onConfirmModal = useCallback(() => {
-    setOpenModal(true);
-  }, []);
-
   return {
-    openModal,
     vehiclesData,
     vehiclesLoading,
-    onCloseModal,
-    onOpenModal,
-    onConfirmModal,
   };
 };

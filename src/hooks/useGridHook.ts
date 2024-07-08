@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { useDriverHook } from "./useDriverHook";
-import { useVehicleHook } from "./useVehicleHook";
+
+import { useGetDriverHook } from "../services/useGetDriverHook";
+import { useGetVehicleHook } from "../services/useGetVehicleHook";
 
 export const useGridHook = () => {
-  const { driversData, driversLoading } = useDriverHook();
-  const { vehiclesData, vehiclesLoading } = useVehicleHook();
+  const { driversData, driversLoading } = useGetDriverHook();
+  const { vehiclesData, vehiclesLoading } = useGetVehicleHook();
 
   const gridRowData = useMemo(() => {
     return driversData?.map((driver) => {

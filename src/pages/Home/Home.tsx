@@ -4,15 +4,17 @@ import SelectedRowInfo from "../../components/SelectedRowInfo/SelectedRowInfo";
 import "./Home.scss";
 import { Container } from "@mui/material";
 import DriverModal from "../../components/DriverModal/DriverModal";
-import { useDriverHook } from "../../hooks/useDriverHook";
+import { useDriverModalHook } from "../../hooks/useDriverModalHook";
 import { useMemo } from "react";
 import type { MenuOptions } from "../../components/Header/types";
-import { useVehicleHook } from "../../hooks/useVehicleHook";
+import { useVehicleModalHook } from "../../hooks/useVehicleModalHook";
 import VehicleModal from "../../components/VehicleModal/VehicleModal";
+import { useGetVehicleHook } from "../../services/useGetVehicleHook";
 
 function Home() {
-  const driverHook = useDriverHook();
-  const vehicleHook = useVehicleHook();
+  const driverHook = useDriverModalHook();
+  const vehicleHook = useVehicleModalHook();
+  const getVehicleHook = useGetVehicleHook();
 
   const optionsMenuHeader: MenuOptions[] = useMemo(() => {
     return [
@@ -36,7 +38,7 @@ function Home() {
       </Container>
 
       <VehicleModal {...vehicleHook} />
-      <DriverModal {...driverHook} />
+      <DriverModal {...driverHook} vehicleOptions={getVehicleHook.vehiclesData} />
     </>
   );
 }
