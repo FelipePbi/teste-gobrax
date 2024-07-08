@@ -1,33 +1,4 @@
 {
-  "drivers": [
-    {
-      "id": 1,
-      "name": "Snow",
-      "document": "Jon",
-      "vehicleId": 1
-    },
-    { "id": 2, "name": "Lannister", "document": "Cersei", "vehicleId": 1 },
-    {
-      "id": 3,
-      "name": "Lannister",
-      "document": "Jaime",
-      "vehicleId": 1
-    },
-    { "id": 4, "name": "Stark", "document": "Arya", "vehicleId": null },
-    { "id": 5, "name": "Targaryen", "document": "Daenerys", "vehicleId": null },
-    {
-      "id": 7,
-      "name": "Clifford",
-      "document": "Ferrara",
-      "vehicleId": null
-    },
-    { "id": 8, "name": "Frances", "document": "Rossini", "vehicleId": null },
-    {
-      "id": 9,
-      "name": "Roxie",
-      "document": "Harvey",
-      "vehicleId": null
-    }
-  ],
-  "vehicles": [{ "id": 1, "brand": "Ford", "plate": "ACX-1231" }]
+  "drivers": [],
+  "vehicles": []
 }
