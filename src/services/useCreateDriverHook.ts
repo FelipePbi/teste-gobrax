@@ -12,7 +12,7 @@ export const useCreateDriverHook = () => {
   } = useMutation({
     mutationKey: ["create-driver"],
     mutationFn: async (data: Omit<Driver, "id">) => {
-      await fetch("http://localhost:3000/drivers", {
+      await fetch(`${process.env.API_URL}drivers`, {
         method: "POST",
         body: JSON.stringify(data),
       });

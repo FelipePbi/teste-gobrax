@@ -6,7 +6,7 @@ export const useGetDriverHook = () => {
   const { data: driversData, isLoading: driversLoading } = useQuery({
     queryKey: ["drivers"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:3000/drivers");
+      const response = await fetch(`${process.env.API_URL}drivers`);
       const data: Driver[] = (await response.json()) as Driver[];
 
       await sleep(500);

@@ -12,7 +12,7 @@ export const useCreateVehicleHook = () => {
   } = useMutation({
     mutationKey: ["create-vehicle"],
     mutationFn: async (data: Omit<Vehicle, "id">) => {
-      await fetch("http://localhost:3000/vehicles", {
+      await fetch(`${process.env.API_URL}vehicles`, {
         method: "POST",
         body: JSON.stringify(data),
       });
