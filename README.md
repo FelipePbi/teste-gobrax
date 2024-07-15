@@ -24,8 +24,32 @@ A ideia do aplicativo é referente a um desafio proposto a mim, com o seguinte c
 
 - [Link Figma](https://www.figma.com/design/yhXyRd4MqrFBY6LZjyb09x/frontend-challenge?node-id=0-1&t=p6zcFwBdEksdrilF-0)
 
-## Começando
+## Começando projeto Web
 
+**Acessar repositório**
+
+```
+$ cd frontend
+```
+**Instalando dependências**
+
+```
+$ yarn install
+```
+
+**Rodando o projeto**
+
+```
+$ yarn dev
+```
+
+## Começando projeto Mobile
+
+**Acessar repositório**
+
+```
+$ cd mobile
+```
 **Instalando dependências**
 
 ```
