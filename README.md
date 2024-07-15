@@ -2,9 +2,13 @@
 
 Aplicação usada para um teste técnico.
 
-#### Demonstração
+#### Demonstração Web
 
 ![Desktop](https://github.com/FelipePbi/teste-gobrax/blob/main/demo/demo.gif)
+
+#### Demonstração Mobile
+
+![Mobile](https://github.com/FelipePbi/teste-gobrax/blob/main/demo/demo-mobile.gif)
 
 
 ## Sobre este projeto
