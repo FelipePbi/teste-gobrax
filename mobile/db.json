@@ -1,0 +1,57 @@
+{
+  "drivers": [
+    {
+      "id": "603a",
+      "name": "Maria Cecília Batista",
+      "document": "715.980.548-99",
+      "vehicleId": "5c7b"
+    },
+    {
+      "id": "4b9f",
+      "name": "Breno Moreira",
+      "document": "864.974.442-82",
+      "vehicleId": "c1ae"
+    },
+    {
+      "id": "e70e",
+      "name": "Alessandra Macedo Jr.",
+      "document": "467.297.073-17",
+      "vehicleId": "5c7b"
+    },
+    {
+      "id": "a19e",
+      "name": "Júlio Silva",
+      "document": "466.981.845-09",
+      "vehicleId": "d3bb"
+    },
+    {
+      "id": "6be7",
+      "name": "Sophia Barros",
+      "document": "386.972.137-54",
+      "vehicleId": "5c7b"
+    },
+    {
+      "id": "e825",
+      "name": "Júlia Franco",
+      "document": "360.091.785-83",
+      "vehicleId": "d3bb"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "5c7b",
+      "brand": "Maserati",
+      "plate": "AV1-2SPE"
+    },
+    {
+      "id": "c1ae",
+      "brand": "Rolls Royce",
+      "plate": "ZT4-8EFP"
+    },
+    {
+      "id": "d3bb",
+      "brand": "Aston Martin",
+      "plate": "KU6-0TXI"
+    }
+  ]
+}
